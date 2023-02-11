@@ -14,23 +14,20 @@ function Header() {
           </svg>
           <span className="ml-3 text-xl">Taxi Contracts</span>
         </a>
-        <Link
-          href="/contracts"
-          className="flex flex-wrap items-center justify-center text-base md:ml-auto"
-        >
-          <nav>
+        <Link href="/contracts" legacyBehavior>
+          <nav className="flex flex-wrap items-center justify-center text-base md:ml-auto">
             <a className="mr-5 hover:text-gray-900">View Available Contracts</a>
           </nav>
         </Link>
-        <Link href="/signin">
+        <Link href="/signin" legacyBehavior>
           <button className="mt-4 inline-flex items-center rounded border-0 bg-gray-100 py-1 px-3 text-base hover:bg-gray-200 focus:outline-none md:mt-0">
             Operator Sign In
             <svg
               fill="none"
               stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
               className="ml-1 h-4 w-4"
               viewBox="0 0 24 24"
             >

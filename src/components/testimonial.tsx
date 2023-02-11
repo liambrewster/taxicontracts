@@ -43,7 +43,7 @@ function Testimonials() {
           {/* Section header */}
           <div className="mx-auto max-w-3xl pb-12 text-center md:pb-16">
             <h2 className="mb-4 text-5xl font-extrabold">
-              Trusted by over some of the top taxi companies in the country
+              Trusted by some of the top taxi companies in the country
             </h2>
             <p className="text-xl text-gray-600" data-aos="zoom-y-out">
               check out some of the companies we work with:
