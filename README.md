@@ -1,12 +1,8 @@
-# Create T3 App
+# Taxi Contracts Tendering System
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+So this is a demo project so i can learn the [T3 Stack](https://create.t3.gg/), so i have taken inspiration from the [School Work jobs board made by AAA Taxis](https://www.schoolcontracts.co.uk/), i will add some additional features to assist my learning.
 
-## What's next? How do I make an app with this?
-
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
-
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+## What's stack will be in this project?
 
 - [Next.js](https://nextjs.org)
 - [NextAuth.js](https://next-auth.js.org)
@@ -14,15 +10,31 @@ If you are not familiar with the different technologies used in this project, pl
 - [Tailwind CSS](https://tailwindcss.com)
 - [tRPC](https://trpc.io)
 
-## Learn More
+## The User Stories to acheive with this project
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+- as a driver, i want to be able to view a list of available school contracts
+- as a driver, i want to be able to filter the search by region or postcode
+- as a driver, i want to be able to sign up to a newsletter to be notified of new contracts
+- as a driver, i want to be able to see the requirments before bidding pickup/ droppoff /number of pickups / est journey mileage / collection times / schedule
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+- as an operator, i want to be able to add a contract for bidding
+- as an operator, i want to be able to add any notes i feel relevent to the driver to know before bidding
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+### advanced user story
 
-## How do I deploy this?
+this will include more advanced options to build after basic first version done
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+- as a driver i want to be able to login and view my bid submissions
+- as a driver i want to be able to login and view my bd outcome summary ( too high / too low etc)
+- take payments from operators to use service or view submissions
+- as an operator, i want to capture drivers required legal documents to complete the contracts
+
+## how to monetize
+
+after building the project i want to try think of ways this could be monetized as a viable product, so some examples to try build into the system:
+
+- take payments form operator to driver and take a commission
+- charge for contract posting / viewing result
+- popup adverts on the site
+
+this would be great to learn but this is only a demo project with no view to be live
