@@ -2,23 +2,23 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import Header from "../components/header";
-
+import Hero from "../components/hero";
 
 const Home: NextPage = () => {
-
   return (
     <>
       <Head>
         <title>Taxi Contracts Tendering</title>
-        <meta name="description" content="Find and Bid for work to help fill your time" />
+        <meta
+          name="description"
+          content="Find and Bid for work to help fill your time"
+        />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header/>
-      
+      <Header />
+      <Hero />
     </>
   );
 };
 
 export default Home;
-
-
