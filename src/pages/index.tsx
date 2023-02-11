@@ -4,6 +4,7 @@ import Link from "next/link";
 import Footer from "../components/footer";
 import Header from "../components/header";
 import Hero from "../components/hero";
+import Testimonials from "../components/testimonial";
 
 const Home: NextPage = () => {
   return (
@@ -18,8 +19,7 @@ const Home: NextPage = () => {
       </Head>
       <Header />
       <Hero />
-      {/* Add Testimonial section with driver feedback */}
-      {/* Add Users section with badges of companies using it */}
+      <Testimonials />
       <Footer />
     </>
   );
