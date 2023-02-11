@@ -1,6 +1,7 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
+import Footer from "../components/footer";
 import Header from "../components/header";
 import Hero from "../components/hero";
 
@@ -17,6 +18,9 @@ const Home: NextPage = () => {
       </Head>
       <Header />
       <Hero />
+      {/* Add Testimonial section with driver feedback */}
+      {/* Add Users section with badges of companies using it */}
+      <Footer />
     </>
   );
 };
