@@ -55,7 +55,6 @@ function Testimonials() {
               check out some of the companies we work with:
             </p>
           </div>
-          {/* TODO: update to taxi company logos */}
           {/* Items */}
           <div className="mx-auto grid max-w-sm grid-cols-4 gap-2 md:max-w-4xl md:grid-cols-5">
             {/* Item */}
@@ -76,7 +75,7 @@ function Testimonials() {
                 height={24}
                 objectFit="cover"
                 src={DG}
-                alt="Addison Lee"
+                alt="DG"
               />
             </div>
 

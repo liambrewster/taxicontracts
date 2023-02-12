@@ -71,7 +71,7 @@ function Hero() {
                   <div>
                     <a
                       className="btn mb-4 w-full rounded bg-yellow-500 p-3 text-white hover:bg-yellow-700 sm:mb-0 sm:w-auto"
-                      href="#0"
+                      href="/contracts"
                     >
                       View Available Contracts
                     </a>
@@ -81,7 +81,7 @@ function Hero() {
                   <div>
                     <a
                       className="btn w-full rounded bg-gray-900 p-3 text-white hover:bg-gray-800 sm:ml-4 sm:w-auto"
-                      href="#0"
+                      href="/how"
                     >
                       Learn more
                     </a>
