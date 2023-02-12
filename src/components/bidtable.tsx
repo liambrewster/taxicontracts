@@ -201,7 +201,7 @@ function BidTable() {
             <td className="px-6 py-4">1</td>
             <td className="px-6 py-4">
               <div className="flex justify-end gap-4">
-                <a x-data="{ tooltip: 'Edite' }" href="/contracts?o=citytaxis">
+                <a x-data="{ tooltip: 'Edite' }" href="#">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -263,7 +263,7 @@ function BidTable() {
             <td className="px-6 py-4">3</td>
             <td className="px-6 py-4">
               <div className="flex justify-end gap-4">
-                <a x-data="{ tooltip: 'Edite' }" href="/contracts?o=citytaxis">
+                <a x-data="{ tooltip: 'Edite' }" href="#">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
