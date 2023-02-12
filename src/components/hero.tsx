@@ -69,10 +69,7 @@ function Hero() {
               >
                 <Link href="/contracts" legacyBehavior>
                   <div>
-                    <a
-                      className="btn mb-4 w-full rounded bg-yellow-500 p-3 text-white hover:bg-yellow-700 sm:mb-0 sm:w-auto"
-                      href="/contracts"
-                    >
+                    <a className="btn mb-4 w-full rounded bg-yellow-500 p-3 text-white hover:bg-yellow-700 sm:mb-0 sm:w-auto">
                       View Available Contracts
                     </a>
                   </div>
