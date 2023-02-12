@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
+import YoutubeThumbnail from "../images/Youtube.png";
 
 function Hero() {
   const [videoModalOpen, setVideoModalOpen] = useState(false);
@@ -8,7 +10,7 @@ function Hero() {
     <section className="relative">
       {/* Illustration behind hero content */}
       <div
-        className="pointer-events-none absolute left-1/2 bottom-0 -translate-x-1/2 transform"
+        className="pointer-events-none invisible absolute left-1/2 bottom-0 -translate-x-1/2 transform md:visible"
         aria-hidden="true"
       >
         <svg
@@ -97,12 +99,12 @@ function Hero() {
               data-aos-delay="450"
             >
               <div className="flex flex-col justify-center">
-                <img
-                  className="mx-auto"
-                  src="https://via.placeholder.com/768x432.png?text=Add+Youtube+Explainer+Video+Here"
-                  width="768"
-                  height="432"
-                  alt="Hero"
+                <Image
+                  width={768}
+                  height={432}
+                  objectFit="cover"
+                  src={YoutubeThumbnail}
+                  alt="hero"
                 />
               </div>
               <button
