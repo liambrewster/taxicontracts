@@ -17,7 +17,7 @@ function Header() {
           </a>
         </Link>
         <Link href="/contracts" legacyBehavior>
-          <button className="flex flex-wrap items-center justify-center text-base md:ml-auto">
+          <button className="hidden flex-wrap items-center justify-center text-base md:visible md:ml-auto md:flex">
             <a className="mr-5 hover:text-gray-900">View Available Contracts</a>
           </button>
         </Link>

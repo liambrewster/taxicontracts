@@ -2,11 +2,11 @@ import Link from "next/link";
 
 function BidTable() {
   return (
-    <div className="mx-10 overflow-hidden rounded-lg border border-gray-200 shadow-md">
+    <div className="mx-2 overflow-x-auto rounded-lg border border-gray-200 shadow-md md:mx-10">
       <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
         <thead className="bg-gray-50">
           <tr>
-            <th scope="col" className="px-6 py-4 font-medium text-gray-900">
+            <th scope="col" className=" px-6 py-4 font-medium text-gray-900">
               Operator
             </th>
             <th scope="col" className="px-6 py-4 font-medium text-gray-900">
@@ -42,7 +42,7 @@ function BidTable() {
         </thead>
         <tbody className="divide-y divide-gray-100 border-t border-gray-100">
           <tr className="hover:bg-gray-50">
-            <th className="flex gap-3 px-6 py-4 font-normal text-gray-900">
+            <th className=" flex gap-3 px-6 py-4 font-normal text-gray-900">
               <div className="relative h-10 w-10">
                 <img
                   className="h-full w-full rounded-full object-cover object-center"
@@ -104,7 +104,7 @@ function BidTable() {
             </td>
           </tr>
           <tr className="hover:bg-gray-50">
-            <th className="flex gap-3 px-6 py-4 font-normal text-gray-900">
+            <th className=" flex gap-3 px-6 py-4 font-normal text-gray-900">
               <div className="relative h-10 w-10">
                 <img
                   className="h-full w-full rounded-full object-cover object-center"
@@ -172,7 +172,7 @@ function BidTable() {
             </td>
           </tr>
           <tr className="hover:bg-gray-50">
-            <th className="flex gap-3 px-6 py-4 font-normal text-gray-900">
+            <th className=" flex gap-3 px-6 py-4 font-normal text-gray-900">
               <div className="relative h-10 w-10">
                 <img
                   className="h-full w-full rounded-full object-cover object-center"
@@ -222,7 +222,7 @@ function BidTable() {
             </td>
           </tr>
           <tr className="hover:bg-gray-50">
-            <th className="flex gap-3 px-6 py-4 font-normal text-gray-900">
+            <th className=" flex gap-3 px-6 py-4 font-normal text-gray-900">
               <div className="relative h-10 w-10">
                 <img
                   className="h-full w-full rounded-full object-cover object-center"

@@ -63,13 +63,13 @@ function Hero() {
                 Tendering System
               </p>
               <div
-                className="mx-auto max-w-xs sm:flex sm:max-w-none sm:justify-center"
+                className="mx-auto max-w-xs  sm:flex sm:max-w-none sm:justify-center"
                 data-aos="zoom-y-out"
                 data-aos-delay="300"
               >
                 <Link href="/contracts" legacyBehavior>
                   <div>
-                    <a className="btn mb-4 w-full rounded bg-yellow-500 p-3 text-white hover:bg-yellow-700 sm:mb-0 sm:w-auto">
+                    <a className="btn mb-8 w-full rounded bg-yellow-500 p-3 text-white hover:bg-yellow-700 sm:mb-0 sm:w-auto">
                       View Available Contracts
                     </a>
                   </div>

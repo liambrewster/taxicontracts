@@ -18,8 +18,8 @@ const Home: NextPage = () => {
       </Head>
       <Header />
       <section className="body-font text-gray-600">
-        <div className="container mx-auto px-5 py-12">
-          <div className="mb-5 flex w-full flex-col text-center">
+        <div className="container mx-auto px-5 py-3 md:py-12">
+          <div className="mb-1 flex w-full flex-col text-center md:mb-5">
             <h2 className="title-font mb-1 text-xs font-medium tracking-widest text-yellow-500">
               Get Bidding Below
             </h2>
