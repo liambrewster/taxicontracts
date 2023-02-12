@@ -1,10 +1,10 @@
 import React from "react";
 import Image from "next/image";
-import Veezu from "../images/veezu.svg";
-import DG from "../images/DG.svg";
-import TakeMe from "../images/takeme.svg";
-import AAA from "../images/aaa-logo.svg";
-import City from "../images/citylogo.svg";
+import Veezu from "../images/veezu.jpeg";
+import DG from "../images/dg.jpeg";
+import TakeMe from "../images/takeme.png";
+import AAA from "../images/aaa-logo.png";
+import City from "../images/citylogo.png";
 
 function Testimonials() {
   return (
