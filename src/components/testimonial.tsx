@@ -11,7 +11,7 @@ function Testimonials() {
     <section className="relative">
       {/* Illustration behind content */}
       <div
-        className="pointer-events-none invisible absolute left-1/2 bottom-0 -mb-32 -translate-x-1/2 transform md:visible"
+        className="pointer-events-none absolute left-1/2 bottom-0 -mb-32 hidden -translate-x-1/2 transform md:block"
         aria-hidden="true"
       >
         <svg

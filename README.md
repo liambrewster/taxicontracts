@@ -16,6 +16,7 @@ So this is a demo project so i can learn the [T3 Stack](https://create.t3.gg/), 
 - as a driver, i want to be able to filter the search by region or postcode
 - as a driver, i want to be able to sign up to a newsletter to be notified of new contracts
 - as a driver, i want to be able to see the requirments before bidding pickup/ droppoff /number of pickups / est journey mileage / collection times / schedule
+- as a driver, i want to be able to subit my details as a bid for that contract
 
 - as an operator, i want to be able to add a contract for bidding
 - as an operator, i want to be able to add any notes i feel relevent to the driver to know before bidding
