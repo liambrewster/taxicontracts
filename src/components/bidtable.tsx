@@ -7,20 +7,18 @@ function BidTable() {
       operator: "City Taxis",
       ref: "ABC1235",
       stage: "ending",
-      stagecolour: "orange",
       pickup: "S12",
       dropoff: "S5",
       pickups: 2,
       mileage: 9.2,
       vehicle: 4,
-      timing: "AM & PM X",
+      timing: "AM & PM",
       days: "Mon, Wed, Fri",
     },
     {
       operator: "City Taxis",
       ref: "ABC234252",
       stage: "active",
-      stagecolour: "green",
       pickup: "S4",
       dropoff: "S5",
       pickups: 1,
@@ -33,7 +31,6 @@ function BidTable() {
       operator: "City Taxis",
       ref: "AQW234252",
       stage: "review",
-      stagecolour: "red",
       pickup: "S5",
       dropoff: "S5",
       pickups: 2,
@@ -46,7 +43,6 @@ function BidTable() {
       operator: "City Taxis",
       ref: "AEEW23452",
       stage: "active",
-      stagecolour: "green",
       pickup: "S10",
       dropoff: "S6",
       pickups: 1,
@@ -59,7 +55,6 @@ function BidTable() {
       operator: "City Taxis",
       ref: "AEKK232132",
       stage: "ending",
-      stagecolour: "orange",
       pickup: "S10",
       dropoff: "S4",
       pickups: 2,
@@ -72,7 +67,6 @@ function BidTable() {
       operator: "City Taxis",
       ref: "AASDK277732",
       stage: "review",
-      stagecolour: "red",
       pickup: "S7",
       dropoff: "S4",
       pickups: 4,
@@ -193,7 +187,7 @@ const Stage = ({ label }: { label: string }) => {
       textColour = "text-green-600";
       break;
     case "review":
-      text = "Review";
+      text = "Reviewing";
       backgroundColour = "bg-red-600";
       textColour = "text-red-600";
       break;
