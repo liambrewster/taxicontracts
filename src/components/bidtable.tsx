@@ -6,7 +6,7 @@ function BidTable() {
     {
       operator: "City Taxis",
       ref: "ABC1235",
-      stage: "Ending",
+      stage: "ending",
       stagecolour: "orange",
       pickup: "S12",
       dropoff: "S5",
@@ -19,7 +19,7 @@ function BidTable() {
     {
       operator: "City Taxis",
       ref: "ABC234252",
-      stage: "Active",
+      stage: "active",
       stagecolour: "green",
       pickup: "S4",
       dropoff: "S5",
@@ -32,7 +32,7 @@ function BidTable() {
     {
       operator: "City Taxis",
       ref: "AQW234252",
-      stage: "Reviewing",
+      stage: "review",
       stagecolour: "red",
       pickup: "S5",
       dropoff: "S5",
@@ -45,7 +45,7 @@ function BidTable() {
     {
       operator: "City Taxis",
       ref: "AEEW23452",
-      stage: "Active",
+      stage: "active",
       stagecolour: "green",
       pickup: "S10",
       dropoff: "S6",
@@ -58,7 +58,7 @@ function BidTable() {
     {
       operator: "City Taxis",
       ref: "AEKK232132",
-      stage: "Ending",
+      stage: "ending",
       stagecolour: "orange",
       pickup: "S10",
       dropoff: "S4",
@@ -71,7 +71,7 @@ function BidTable() {
     {
       operator: "City Taxis",
       ref: "AASDK277732",
-      stage: "Reviewing",
+      stage: "review",
       stagecolour: "red",
       pickup: "S7",
       dropoff: "S4",
@@ -141,14 +141,7 @@ function BidTable() {
                 </div>
               </th>
               <td className="px-6 py-4">
-                <span
-                  className={`inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold text-${contract.stagecolour}-600`}
-                >
-                  <span
-                    className={`h-1.5 w-1.5 rounded-full bg-${contract.stagecolour}-600`}
-                  ></span>
-                  {contract.stage}
-                </span>
+                <Stage label={contract.stage} />
               </td>
               <td className="px-6 py-4">{contract.pickup}</td>
               <td className="px-6 py-4">{contract.dropoff}</td>
@@ -187,3 +180,36 @@ function BidTable() {
 }
 
 export default BidTable;
+
+const Stage = ({ label }: { label: string }) => {
+  let text: string = "";
+  let backgroundColour: string = "";
+  let textColour: string = "";
+
+  switch (label) {
+    case "active":
+      text = "Active";
+      backgroundColour = "bg-green-600";
+      textColour = "text-green-600";
+      break;
+    case "review":
+      text = "Review";
+      backgroundColour = "bg-red-600";
+      textColour = "text-red-600";
+      break;
+    case "ending":
+      text = "Ending";
+      backgroundColour = "bg-yellow-600";
+      textColour = "text-yellow-600";
+      break;
+  }
+
+  return (
+    <span
+      className={`inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold ${textColour}`}
+    >
+      <span className={`h-1.5 w-1.5 rounded-full ${backgroundColour}`}></span>
+      {text}
+    </span>
+  );
+};
