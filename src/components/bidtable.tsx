@@ -182,9 +182,9 @@ function BidTable() {
 export default BidTable;
 
 const Stage = ({ label }: { label: string }) => {
-  let text: string = "";
-  let backgroundColour: string = "";
-  let textColour: string = "";
+  let text: string = "Active";
+  let backgroundColour: string = "bg-green-600";
+  let textColour: string = "text-green-600";
 
   switch (label) {
     case "active":
