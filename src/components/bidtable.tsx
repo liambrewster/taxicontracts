@@ -13,7 +13,7 @@ function BidTable() {
       pickups: 2,
       mileage: 9.2,
       vehicle: 4,
-      timing: "AM & PM",
+      timing: "AM & PM X",
       days: "Mon, Wed, Fri",
     },
     {
@@ -182,9 +182,9 @@ function BidTable() {
 export default BidTable;
 
 const Stage = ({ label }: { label: string }) => {
-  let text: string = "Active";
-  let backgroundColour: string = "bg-green-600";
-  let textColour: string = "text-green-600";
+  let text = "Active";
+  let backgroundColour = "bg-green-600";
+  let textColour = "text-green-600";
 
   switch (label) {
     case "active":
