@@ -5,7 +5,7 @@ import BidTable from "../components/bidtable";
 import Footer from "../components/footer";
 import Header from "../components/header";
 
-const Home: NextPage = () => {
+const Contracts: NextPage = () => {
   return (
     <>
       <Head>
@@ -41,4 +41,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default Contracts;
