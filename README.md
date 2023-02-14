@@ -29,11 +29,12 @@ So this is a demo project so i can learn the [T3 Stack](https://create.t3.gg/), 
 
 ### advanced user story
 
-this will include more advanced options to build after basic first version done
+this will include more advanced options to build after basic first version done, should i wish to go that far after completing the test
 
-- as a driver i want to be able to login and view my bid submissions
-- as a driver i want to be able to login and view my bid outcome summary ( too high / too low etc)
-- take payments from operators to use service or view submissions
+- as a driver, i want to be able to login and view my bid submissions
+- as a driver, i want to be able to login and view my bid outcome summary ( too high / too low etc)
+- as a driver, i want to see a breif overview pickup/dropoff on a map as i submit my bid
+- as a SAAS owen, I want to take payments from operators to use service or view full detail of submissions
 - as an operator, i want to capture drivers required legal documents to complete the contracts
 
 ## how to monetize
