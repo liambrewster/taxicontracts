@@ -15,12 +15,6 @@ datasource db {
     shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
-model Example {
-    id        String   @id @default(cuid())
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-}
-
 // Necessary for Next auth
 model Account {
     id                String  @id @default(cuid())
@@ -49,13 +43,17 @@ model Session {
 }
 
 model User {
-    id            String    @id @default(cuid())
+    id            String     @id @default(cuid())
     name          String?
-    email         String?   @unique
+    email         String?    @unique
     emailVerified DateTime?
     image         String?
     accounts      Account[]
     sessions      Session[]
+    role          Role       @default(USER)
+    operatorId    String?
+    operator      Operator?  @relation(fields: [operatorId], references: [id])
+    contracts     Contract[]
 }
 
 model VerificationToken {
@@ -64,4 +62,84 @@ model VerificationToken {
     expires    DateTime
 
     @@unique([identifier, token])
+}
+
+// My Schemas
+model Operator {
+    id           String     @id @default(cuid())
+    name         String     @unique
+    logo         String?
+    public_email String?
+    public_phone String?
+    plan         OpPlan     @default(BASIC)
+    users        User[]
+    contracts    Contract[]
+}
+
+enum OpPlan {
+    BASIC
+    STANDARD
+    PREMIUM
+}
+
+enum Role {
+    USER
+    MANAGER
+    ADMIN
+    SUPERADMIN
+}
+
+enum Status {
+    DRAFT
+    PENDING
+    ACTIVE
+    INREVIEW
+    CLOSED
+    COMPLETE
+    DELETED
+}
+
+enum JourneyType {
+    REGULAR
+    SINGLE
+    RETURN
+}
+
+model Contract {
+    id          String      @id @default(cuid())
+    internalId  String
+    operatorId  String
+    operator    Operator    @relation(fields: [operatorId], references: [id])
+    userId      String
+    user        User        @relation(fields: [userId], references: [id])
+    status      Status      @default(ACTIVE)
+    pickup      String
+    destination String
+    collections Int
+    distance    Int
+    vehicleSize Int         @default(4)
+    timings     String
+    days        String
+    journeytype JourneyType @default(REGULAR)
+    submitted   DateTime    @default(now())
+    expiry      DateTime
+    bids        Bid[]
+}
+
+model Bid {
+    id                 String   @id @default(cuid())
+    contractId         String
+    contract           Contract @relation(fields: [contractId], references: [id])
+    submitted          DateTime @default(now())
+    firstName          String
+    lastName           String
+    email              String
+    mobile             String
+    address1           String
+    town               String
+    postcode           String
+    vehicle            String
+    licensingAuthority String
+    bidAmount          Int
+    winningBid         Boolean?
 }
