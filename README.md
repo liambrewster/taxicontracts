@@ -12,11 +12,17 @@ So this is a demo project so i can learn the [T3 Stack](https://create.t3.gg/), 
 
 ## The User Stories to acheive with this project
 
+### Driver
+
 - as a driver, i want to be able to view a list of available school contracts
 - as a driver, i want to be able to filter the search by region or postcode
+- as a driver, i want to be able to filter the search by operator (own page or use params?)
 - as a driver, i want to be able to sign up to a newsletter to be notified of new contracts
 - as a driver, i want to be able to see the requirments before bidding pickup/ droppoff /number of pickups / est journey mileage / collection times / schedule
 - as a driver, i want to be able to subit my details as a bid for that contract
+- as a driver, i want to get an email confirmation when i submit a bid
+
+### Opertor
 
 - as an operator, i want to be able to add a contract for bidding
 - as an operator, i want to be able to add any notes i feel relevent to the driver to know before bidding
@@ -26,7 +32,7 @@ So this is a demo project so i can learn the [T3 Stack](https://create.t3.gg/), 
 this will include more advanced options to build after basic first version done
 
 - as a driver i want to be able to login and view my bid submissions
-- as a driver i want to be able to login and view my bd outcome summary ( too high / too low etc)
+- as a driver i want to be able to login and view my bid outcome summary ( too high / too low etc)
 - take payments from operators to use service or view submissions
 - as an operator, i want to capture drivers required legal documents to complete the contracts
 

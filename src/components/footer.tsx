@@ -2,7 +2,7 @@ import Link from "next/link";
 
 function Footer() {
   return (
-    <footer className="body-font text-gray-600">
+    <footer className="body-font text-gray-600 z-50">
       <div className="container mx-auto flex flex-col items-center px-5 py-8 sm:flex-row">
         <Link href="/" legacyBehavior>
           <a className="title-font flex items-center justify-center font-medium text-gray-900 md:justify-start">
