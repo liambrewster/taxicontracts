@@ -59,57 +59,27 @@ function Testimonials() {
           <div className="mx-auto grid max-w-sm grid-cols-4 gap-2 md:max-w-4xl md:grid-cols-5">
             {/* Item */}
             <div className="col-span-2 flex items-center justify-center py-2 md:col-auto">
-              <Image
-                width={124}
-                height={24}
-                objectFit="cover"
-                src={Veezu}
-                alt="Veezu"
-              />
+              <Image width={124} height={24} src={Veezu} alt="Veezu" />
             </div>
 
             {/* Item */}
             <div className="col-span-2 flex items-center justify-center py-2 md:col-auto">
-              <Image
-                width={124}
-                height={24}
-                objectFit="cover"
-                src={DG}
-                alt="DG"
-              />
+              <Image width={124} height={24} src={DG} alt="DG" />
             </div>
 
             {/* Item */}
             <div className="col-span-2 flex items-center justify-center py-2 md:col-auto">
-              <Image
-                width={124}
-                height={24}
-                objectFit="cover"
-                src={TakeMe}
-                alt="TakeMe"
-              />
+              <Image width={124} height={24} src={TakeMe} alt="TakeMe" />
             </div>
 
             {/* Item */}
             <div className="col-span-2 flex items-center justify-center py-2 md:col-auto">
-              <Image
-                width={124}
-                height={24}
-                objectFit="cover"
-                src={AAA}
-                alt="AAA"
-              />
+              <Image width={124} height={24} src={AAA} alt="AAA" />
             </div>
 
             {/* Item */}
             <div className="col-span-2 col-start-2 col-end-4 flex items-center justify-center py-2 md:col-auto">
-              <Image
-                width={124}
-                height={24}
-                objectFit="cover"
-                src={City}
-                alt="City"
-              />
+              <Image width={124} height={24} src={City} alt="City" />
             </div>
           </div>
 
