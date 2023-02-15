@@ -3,6 +3,18 @@ import Link from "next/link";
 import { RiAuctionLine } from "react-icons/ri";
 
 function BidTable() {
+  const backUpArray = {
+    operator: "No Current Contracts",
+    ref: "",
+    stage: "nodata",
+    pickup: "😢",
+    dropoff: "😭",
+    pickups: 0,
+    mileage: 0,
+    vehicle: 0,
+    timing: "😐",
+    days: "🙁",
+  };
   const contracts = [
     {
       operator: "City Taxis",
@@ -17,7 +29,7 @@ function BidTable() {
       days: "Mon, Wed, Fri",
     },
     {
-      operator: "City Taxis",
+      operator: "DG Taxis",
       ref: "ABC234252",
       stage: "active",
       pickup: "S4",
@@ -29,7 +41,7 @@ function BidTable() {
       days: "Mon, Wed, Fri",
     },
     {
-      operator: "City Taxis",
+      operator: "AAA Taxis",
       ref: "AQW234252",
       stage: "review",
       pickup: "S5",
@@ -77,6 +89,9 @@ function BidTable() {
       days: "Mon, Tue, Thu",
     },
   ];
+  if (!contracts.length) {
+    contracts.push(backUpArray);
+  }
   return (
     <div className="mx-2 overflow-x-auto rounded-lg border border-gray-200 shadow-md md:mx-10">
       <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
@@ -123,7 +138,7 @@ function BidTable() {
                 <div className="relative h-10 w-10">
                   <img
                     className="h-full w-full rounded-full object-cover object-center"
-                    src="https://citytaxis.com/wp-content/uploads/2019/12/Screenshot-2019-12-23-at-15.51.18.png"
+                    src={`https://eu.ui-avatars.com/api/?name=${contract.operator}&size=250`}
                     alt=""
                   />
                   <span className="absolute right-0 bottom-0 h-2 w-2 rounded-full bg-green-400 ring ring-white"></span>
@@ -173,6 +188,16 @@ const Stage = ({ label }: { label: string }) => {
       break;
     case "review":
       text = "Reviewing";
+      backgroundColour = "bg-red-600";
+      textColour = "text-red-600";
+      break;
+    case "closed":
+      text = "Closed";
+      backgroundColour = "bg-red-600";
+      textColour = "text-red-600";
+      break;
+    case "nodata":
+      text = "No Data";
       backgroundColour = "bg-red-600";
       textColour = "text-red-600";
       break;
