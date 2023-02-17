@@ -23,20 +23,6 @@ function Header() {
           </button>
         </Link>
         <AuthShowcase />
-        {/* <button className="mt-4 inline-flex items-center rounded border-0 bg-gray-100 py-1 px-3 text-base hover:bg-gray-200 focus:outline-none md:mt-0">
-          Operator Sign In
-          <svg
-            fill="none"
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            className="ml-1 h-4 w-4"
-            viewBox="0 0 24 24"
-          >
-            <path d="M5 12h14M12 5l7 7-7 7"></path>
-          </svg>
-        </button> */}
       </div>
     </header>
   );
@@ -51,7 +37,11 @@ const AuthShowcase: React.FC = () => {
     <div className="flex flex-col items-center justify-center gap-4">
       <button
         className="mt-4 inline-flex items-center rounded border-0 bg-gray-100 py-1 px-3 text-base hover:bg-gray-200 focus:outline-none md:mt-0"
-        onClick={sessionData ? () => void signOut() : () => void signIn()}
+        onClick={
+          sessionData
+            ? () => void signOut({ callbackUrl: "/" })
+            : () => void signIn(undefined, { callbackUrl: "/dashboard" })
+        }
       >
         {sessionData ? "Sign out" : "Operator Sign in"}
         <svg
