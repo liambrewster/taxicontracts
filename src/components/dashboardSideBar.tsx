@@ -1,13 +1,11 @@
 import Link from "next/link";
-import { BsPlus, BsGearFill } from "react-icons/bs";
+import { BsPlus } from "react-icons/bs";
 import {
   FaHome,
-  FaRegPaperPlane,
   FaRegClock,
   FaRegCheckCircle,
   FaUserCog,
   FaRegQuestionCircle,
-  FaChartLine,
 } from "react-icons/fa";
 
 const DashboardSideBar = () => {
