@@ -3,11 +3,7 @@ import Image from "next/image";
 import Avatar from "../images/avatar.jpeg";
 import { useSession } from "next-auth/react";
 
-function CardProfile({ user }: { user: string }) {
-  if (!user) {
-    user = "Hello";
-  }
-
+function CardProfile({}) {
   const { data: sessionData } = useSession();
   console.log(sessionData);
 
@@ -27,7 +23,7 @@ function CardProfile({ user }: { user: string }) {
               {sessionData && <span> {sessionData.user?.name}</span>}
             </h3>
             <div className="mt-0 mb-1 text-sm font-bold uppercase leading-normal text-gray-400">
-              Role: User
+              Role: {sessionData && <span> {sessionData.user?.role}</span>}
             </div>
             <div className="mb-5  text-gray-600">
               {sessionData && <span> {sessionData.user?.email}</span>}
