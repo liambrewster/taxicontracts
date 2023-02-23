@@ -1,14 +1,28 @@
 import { type NextPage } from "next";
+import React, { useEffect } from "react";
+import { useRouter } from "next/router";
 import Head from "next/head";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import CardProfile from "../../components/cardProfile";
 import DashboardSideBar from "../../components/dashboardSideBar";
+import Loading from "../../components/loading";
 
 // TODO: make private route must be signed in user
 
 const Dashboard: NextPage = () => {
-  const { data: sessionData } = useSession();
+  const router = useRouter();
+  const { data: sessionData, status } = useSession({
+    required: true,
+    onUnauthenticated() {
+      router.push("/");
+      // TODO: add toast with meaningful error
+    },
+  });
+
+  if (status === "loading") {
+    return <Loading />;
+  }
 
   return (
     <>
