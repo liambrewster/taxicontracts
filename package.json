@@ -9,7 +9,7 @@
     "postinstall": "prisma generate",
     "lint": "next lint",
     "start": "next start",
-    "baseline": "prisma migrate resolve --applied 20230211094433_init && prisma migrate resolve --applied 20230214231531_build_out_mvp_schema && prisma migrate resolve --applied 20230214234725_refactor"
+    "baseline": "prisma migrate resolve --applied 20230211094433_init && prisma migrate resolve --applied 20230214231531_build_out_mvp_schema && prisma migrate resolve --applied 20230214234725_refactor && prisma migrate resolve --applied 20230224234546_added_invite_data"
   },
   "dependencies": {
     "@next-auth/prisma-adapter": "^1.0.5",
