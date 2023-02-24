@@ -39,8 +39,9 @@ function OperatorSignUp() {
                   </h3>
                   <p className="mt-1 text-sm text-gray-600">
                     Add yourself to an existing operators account, ask the
-                    operator to share with you the "Operator ID" & associated
-                    "Invite Code" found in their settings page.
+                    operator to share with you the `&quot;`Operator ID`&quot;` &
+                    associated `&quot;`Invite Code`&quot;` found in their
+                    settings page.
                   </p>
                 </div>
               </div>

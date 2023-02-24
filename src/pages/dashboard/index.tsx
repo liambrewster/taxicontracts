@@ -14,7 +14,8 @@ const Dashboard: NextPage = () => {
   const { data: sessionData, status } = useSession({
     required: true,
     onUnauthenticated() {
-      router.push("/");
+      router.push("/").catch((error) => console.error("Oh no!", error));
+
       // TODO: add toast with meaningful error
     },
   });
