@@ -7,8 +7,7 @@ import Link from "next/link";
 import CardProfile from "../../components/cardProfile";
 import DashboardSideBar from "../../components/dashboardSideBar";
 import Loading from "../../components/loading";
-
-// TODO: make private route must be signed in user
+import OperatorSignUp from "../../components/operatorSignUp";
 
 const Dashboard: NextPage = () => {
   const router = useRouter();
@@ -22,6 +21,10 @@ const Dashboard: NextPage = () => {
 
   if (status === "loading") {
     return <Loading />;
+  }
+
+  if (!sessionData.user.operatorId) {
+    return <OperatorSignUp />;
   }
 
   return (
