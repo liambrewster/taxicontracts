@@ -58,8 +58,10 @@ model VerificationToken {
 
 model Operator {
     id           String     @id @default(cuid())
+    inviteCode   String     @default(cuid())
     name         String     @unique
     logo         String?
+    website      String?
     public_email String?
     public_phone String?
     plan         OpPlan     @default(BASIC)

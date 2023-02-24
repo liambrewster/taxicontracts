@@ -1,9 +1,33 @@
 import Link from "next/link";
 import Head from "next/head";
+import { useState } from "react";
 
 function OperatorSignUp() {
   // TODO: add logic to add to an existing operator
+  const [joinData, setJoinData] = useState({
+    operatorId: "",
+    inviteCode: "",
+  });
+  const { operatorId, inviteCode } = joinData;
+  const onJDChange = (e: { target: HTMLInputElement }) => {
+    setJoinData((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
   // TODO: add logic to create a new operator
+  const [opData, setOpData] = useState({
+    operatorName: "",
+    operatorEmail: "",
+    operatorPhone: "",
+  });
+  const { operatorName, operatorEmail, operatorPhone } = opData;
+  const onOPChange = (e: { target: HTMLInputElement }) => {
+    setOpData((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
   return (
     <>
       <Head>
@@ -39,14 +63,14 @@ function OperatorSignUp() {
                   </h3>
                   <p className="mt-1 text-sm text-gray-600">
                     Add yourself to an existing operators account, ask the
-                    operator to share with you the `&quot;`Operator ID`&quot;` &
-                    associated `&quot;`Invite Code`&quot;` found in their
-                    settings page.
+                    operator to share with you the &quot;Operator ID&quot; &
+                    associated &quot;Invite Code&quot; found in their settings
+                    page.
                   </p>
                 </div>
               </div>
               <div className="mt-5 md:col-span-2 md:mt-0">
-                <div className="overflow-hidden shadow sm:rounded-md">
+                <div className="overflow-hidden shadow-lg sm:rounded-md">
                   <div className="bg-white px-4 py-5 sm:p-6">
                     <div className="grid grid-cols-6 gap-6">
                       <div className="col-span-6 sm:col-span-3">
@@ -60,7 +84,9 @@ function OperatorSignUp() {
                           type="text"
                           name="operatorId"
                           id="operatorId"
-                          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-yellow-500 focus:ring-yellow-500 sm:text-sm"
+                          value={operatorId}
+                          onChange={onJDChange}
+                          className="mt-1 block w-full rounded-md border-gray-500 pl-3 shadow-sm focus:border-yellow-500 focus:ring-yellow-500 sm:text-lg"
                         />
                       </div>
 
@@ -75,12 +101,14 @@ function OperatorSignUp() {
                           type="text"
                           name="inviteCode"
                           id="inviteCode"
-                          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-yellow-500 focus:ring-yellow-500 sm:text-sm"
+                          value={inviteCode}
+                          onChange={onJDChange}
+                          className="mt-1 block w-full rounded-md border-gray-300 pl-3 shadow-sm focus:border-yellow-500 focus:ring-yellow-500 sm:text-lg"
                         />
                       </div>
                     </div>
                   </div>
-                  <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">
+                  <div className="bg-gray-100 px-4 py-3 text-right sm:px-6">
                     <button
                       type="submit"
                       className="inline-flex justify-center rounded-md border border-transparent bg-yellow-500 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2"
@@ -125,7 +153,9 @@ function OperatorSignUp() {
                             type="text"
                             name="operatorName"
                             id="operatorName"
-                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-yellow-500 focus:ring-yellow-500 sm:text-sm"
+                            value={operatorName}
+                            onChange={onOPChange}
+                            className="mt-1 block w-full rounded-md border-gray-300 pl-3 shadow-sm focus:border-yellow-500 focus:ring-yellow-500 sm:text-lg"
                           />
                         </div>
                         <div className="col-span-6 sm:col-span-3">
@@ -139,8 +169,10 @@ function OperatorSignUp() {
                             type="text"
                             name="operatorEmail"
                             id="operatorEmail"
+                            value={operatorEmail}
+                            onChange={onOPChange}
                             autoComplete="given-name"
-                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-yellow-500 focus:ring-yellow-500 sm:text-sm"
+                            className="mt-1 block w-full rounded-md border-gray-300 pl-3 shadow-sm focus:border-yellow-500 focus:ring-yellow-500 sm:text-lg"
                           />
                         </div>
 
@@ -155,8 +187,10 @@ function OperatorSignUp() {
                             type="text"
                             name="operatorPhone"
                             id="operatorPhone"
+                            value={operatorPhone}
+                            onChange={onOPChange}
                             autoComplete="family-name"
-                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-yellow-500 focus:ring-yellow-500 sm:text-sm"
+                            className="mt-1 block w-full rounded-md border-gray-300 pl-3 shadow-sm focus:border-yellow-500 focus:ring-yellow-500 sm:text-lg"
                           />
                         </div>
                       </div>
@@ -226,7 +260,7 @@ function OperatorSignUp() {
                         </div>
                       </div>
                     </div> */}
-                    <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">
+                    <div className="bg-gray-100 px-4 py-3 text-right sm:px-6">
                       <button
                         type="submit"
                         className="inline-flex justify-center rounded-md border border-transparent bg-yellow-500 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2"
