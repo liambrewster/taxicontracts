@@ -2,9 +2,13 @@ import Link from "next/link";
 import Head from "next/head";
 import { useState } from "react";
 import { api } from "../utils/api";
+import Router, { useRouter } from "next/router";
+import { toast } from "react-toastify";
 
 function OperatorSignUp() {
+  const router = useRouter();
   const hello = api.operator.count.useQuery();
+  const [loading, setLoading] = useState(false);
   // TODO: add logic to add to an existing operator
   // On Submit, Check the Operator id valid and the invite code is correct, then update the user operator id field
   const [joinData, setJoinData] = useState({
@@ -35,11 +39,26 @@ function OperatorSignUp() {
     }));
   };
 
-  const onNewOperatorSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const { mutateAsync: createOperator } = api.operator.create.useMutation();
+  const onNewOperatorSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const operatorCreated = api.operator.create.useMutation({});
-    console.log("This has been pressed ", opData);
-    // console.log("New Op ", operatorCreated);
+    setLoading(true);
+    try {
+      const result = await createOperator(opData);
+      console.log("New Op ", result);
+      router.reload();
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+      toast(
+        "Check the Operator Name as it may already be in use, and Try again!",
+        {
+          hideProgressBar: true,
+          autoClose: 2000,
+          type: "error",
+        }
+      );
+    }
   };
   return (
     <>
@@ -275,12 +294,14 @@ function OperatorSignUp() {
                       </div>
                     </div> */}
                     <div className="bg-gray-100 px-4 py-3 text-right sm:px-6">
-                      <button
-                        type="submit"
-                        className="inline-flex justify-center rounded-md border border-transparent bg-yellow-500 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 active:scale-95"
-                      >
-                        Add New
-                      </button>
+                      {!loading && (
+                        <button
+                          type="submit"
+                          className="inline-flex justify-center rounded-md border border-transparent bg-yellow-500 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 active:scale-95"
+                        >
+                          Add New
+                        </button>
+                      )}
                     </div>
                   </div>
                 </form>
