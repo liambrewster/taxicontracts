@@ -1,9 +1,12 @@
 import Link from "next/link";
 import Head from "next/head";
 import { useState } from "react";
+import { api } from "../utils/api";
 
 function OperatorSignUp() {
+  const hello = api.operator.count.useQuery();
   // TODO: add logic to add to an existing operator
+  // On Submit, Check the Operator id valid and the invite code is correct, then update the user operator id field
   const [joinData, setJoinData] = useState({
     operatorId: "",
     inviteCode: "",
@@ -16,17 +19,27 @@ function OperatorSignUp() {
     }));
   };
   // TODO: add logic to create a new operator
+  // On Submit, First Create a New record for an operator, then update the current user with the operator Id & update to be admin
   const [opData, setOpData] = useState({
-    operatorName: "",
-    operatorEmail: "",
-    operatorPhone: "",
+    name: "",
+    public_email: "",
+    public_phone: "",
+    website: "",
+    logo: "",
   });
-  const { operatorName, operatorEmail, operatorPhone } = opData;
+  const { name, public_email, public_phone } = opData;
   const onOPChange = (e: { target: HTMLInputElement }) => {
     setOpData((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
     }));
+  };
+
+  const onNewOperatorSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const operatorCreated = api.operator.create.useMutation({});
+    console.log("This has been pressed ", opData);
+    // console.log("New Op ", operatorCreated);
   };
   return (
     <>
@@ -133,28 +146,31 @@ function OperatorSignUp() {
                     New Operator Information
                   </h3>
                   <p className="mt-1 text-sm text-gray-600">
-                    Enter the information to create a new operator
+                    Join our {hello.data ? hello.data : "5"} other operators
+                    using this service, Enter your information to create a new
+                    operator and get started today.
                   </p>
                 </div>
               </div>
               <div className="mt-5 md:col-span-2 md:mt-0">
-                <form action="#" method="POST">
+                <form onSubmit={onNewOperatorSubmit}>
                   <div className="overflow-hidden shadow sm:rounded-md">
                     <div className="bg-white px-4 py-5 sm:p-6">
                       <div className="grid grid-cols-6 gap-6">
                         <div className="col-span-6 sm:col-span-4">
                           <label
-                            htmlFor="operatorName"
+                            htmlFor="name"
                             className="block text-sm font-medium text-gray-700"
                           >
                             Operator Name
                           </label>
                           <input
                             type="text"
-                            name="operatorName"
-                            id="operatorName"
-                            value={operatorName}
+                            name="name"
+                            id="name"
+                            value={name}
                             onChange={onOPChange}
+                            required
                             className="mt-1 block w-full rounded-md border-gray-300 pl-3 shadow-sm focus:border-yellow-500 focus:ring-yellow-500 sm:text-lg"
                           />
                         </div>
@@ -167,11 +183,10 @@ function OperatorSignUp() {
                           </label>
                           <input
                             type="text"
-                            name="operatorEmail"
-                            id="operatorEmail"
-                            value={operatorEmail}
+                            name="public_email"
+                            id="public_email"
+                            value={public_email}
                             onChange={onOPChange}
-                            autoComplete="given-name"
                             className="mt-1 block w-full rounded-md border-gray-300 pl-3 shadow-sm focus:border-yellow-500 focus:ring-yellow-500 sm:text-lg"
                           />
                         </div>
@@ -185,11 +200,10 @@ function OperatorSignUp() {
                           </label>
                           <input
                             type="text"
-                            name="operatorPhone"
-                            id="operatorPhone"
-                            value={operatorPhone}
+                            name="public_phone"
+                            id="public_phone"
+                            value={public_phone}
                             onChange={onOPChange}
-                            autoComplete="family-name"
                             className="mt-1 block w-full rounded-md border-gray-300 pl-3 shadow-sm focus:border-yellow-500 focus:ring-yellow-500 sm:text-lg"
                           />
                         </div>
@@ -263,7 +277,7 @@ function OperatorSignUp() {
                     <div className="bg-gray-100 px-4 py-3 text-right sm:px-6">
                       <button
                         type="submit"
-                        className="inline-flex justify-center rounded-md border border-transparent bg-yellow-500 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2"
+                        className="inline-flex justify-center rounded-md border border-transparent bg-yellow-500 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 active:scale-95"
                       >
                         Add New
                       </button>
