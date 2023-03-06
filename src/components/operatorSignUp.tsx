@@ -4,12 +4,14 @@ import { useState } from "react";
 import { api } from "../utils/api";
 import Router, { useRouter } from "next/router";
 import { toast } from "react-toastify";
+import { date } from "zod";
 
 function OperatorSignUp() {
   const router = useRouter();
-  const hello = api.operator.count.useQuery();
+  const opCount = api.operator.count.useQuery();
   const [loading, setLoading] = useState(false);
-  // TODO: add logic to add to an existing operator
+
+  // Add to Existing Operator
   // On Submit, Check the Operator id valid and the invite code is correct, then update the user operator id field
   const [joinData, setJoinData] = useState({
     operatorId: "",
@@ -22,8 +24,54 @@ function OperatorSignUp() {
       [e.target.name]: e.target.value,
     }));
   };
-  // TODO: add logic to create a new operator
-  // On Submit, First Create a New record for an operator, then update the current user with the operator Id & update to be admin
+
+  const { data: OperatorInfo } = api.operator.findByID.useQuery(
+    { operatorId },
+    { enabled: inviteCode.length > 10 }
+  );
+  const onOperatorInviteSubmit = async (
+    e: React.FormEvent<HTMLFormElement>
+  ): Promise<void> => {
+    e.preventDefault();
+    setLoading(true);
+    if (OperatorInfo?.inviteCode === inviteCode) {
+      try {
+        console.log("Trying......");
+        const dataObject = {
+          operatorId,
+        };
+        const updatedUser = await updateUser(dataObject);
+        toast(`User Added to Operator `, {
+          hideProgressBar: true,
+          autoClose: 2000,
+          type: "success",
+        });
+        setTimeout(() => {
+          router.reload();
+        }, 5000);
+      } catch (error) {
+        console.log(error);
+        setLoading(false);
+        toast(
+          "Check the Operator Name as it may already be in use, and Try again!",
+          {
+            hideProgressBar: true,
+            autoClose: 2000,
+            type: "error",
+          }
+        );
+      }
+    } else {
+      setLoading(false);
+      toast("Check the Operator Invite Code and Try Again", {
+        hideProgressBar: true,
+        autoClose: 5000,
+        type: "error",
+      });
+    }
+  };
+
+  // Create New Operator!
   const [opData, setOpData] = useState({
     name: "",
     public_email: "",
@@ -56,6 +104,7 @@ function OperatorSignUp() {
       });
       const dataObject = {
         operatorId: newOpId,
+        role: "ADMIN",
       };
       const updatedUser = await updateUser(dataObject);
       toast(`User Updated `, {
@@ -121,55 +170,66 @@ function OperatorSignUp() {
                 </div>
               </div>
               <div className="mt-5 md:col-span-2 md:mt-0">
-                <div className="overflow-hidden shadow-lg sm:rounded-md">
-                  <div className="bg-white px-4 py-5 sm:p-6">
-                    <div className="grid grid-cols-6 gap-6">
-                      <div className="col-span-6 sm:col-span-3">
-                        <label
-                          htmlFor="operatorId"
-                          className="block text-sm font-medium text-gray-700"
-                        >
-                          Operator ID
-                        </label>
-                        <input
-                          type="text"
-                          name="operatorId"
-                          id="operatorId"
-                          value={operatorId}
-                          onChange={onJDChange}
-                          className="mt-1 block w-full rounded-md border-gray-500 pl-3 shadow-sm focus:border-yellow-500 focus:ring-yellow-500 sm:text-lg"
-                        />
-                      </div>
+                <form onSubmit={onOperatorInviteSubmit}>
+                  <div className="overflow-hidden shadow-lg sm:rounded-md">
+                    <div className="bg-white px-4 py-5 sm:p-6">
+                      <div className="grid grid-cols-6 gap-6">
+                        <div className="col-span-6 sm:col-span-3">
+                          <label
+                            htmlFor="operatorId"
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Operator ID{" "}
+                            {OperatorInfo?.id && (
+                              <p className=" inline">
+                                - Found Operator ={" "}
+                                <span className="text-bold text-green-500">
+                                  {OperatorInfo.name}
+                                </span>
+                              </p>
+                            )}
+                          </label>
+                          <input
+                            type="text"
+                            name="operatorId"
+                            id="operatorId"
+                            value={operatorId}
+                            onChange={onJDChange}
+                            className="mt-1 block w-full rounded-md border-gray-500 pl-3 shadow-sm focus:border-yellow-500 focus:ring-yellow-500 sm:text-lg"
+                          />
+                        </div>
 
-                      <div className="col-span-6 sm:col-span-3">
-                        <label
-                          htmlFor="inviteCode"
-                          className="block text-sm font-medium text-gray-700"
-                        >
-                          Invite Code
-                        </label>
-                        <input
-                          type="text"
-                          name="inviteCode"
-                          id="inviteCode"
-                          value={inviteCode}
-                          onChange={onJDChange}
-                          className="mt-1 block w-full rounded-md border-gray-300 pl-3 shadow-sm focus:border-yellow-500 focus:ring-yellow-500 sm:text-lg"
-                        />
+                        <div className="col-span-6 sm:col-span-3">
+                          <label
+                            htmlFor="inviteCode"
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Invite Code
+                          </label>
+                          <input
+                            type="text"
+                            name="inviteCode"
+                            id="inviteCode"
+                            value={inviteCode}
+                            onChange={onJDChange}
+                            className="mt-1 block w-full rounded-md border-gray-300 pl-3 shadow-sm focus:border-yellow-500 focus:ring-yellow-500 sm:text-lg"
+                          />
+                        </div>
                       </div>
                     </div>
+                    <div className="bg-gray-100 px-4 py-3 text-right sm:px-6">
+                      {!loading && (
+                        <button
+                          id="join_team"
+                          type="submit"
+                          className="inline-flex justify-center rounded-md border border-transparent bg-yellow-500 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 active:scale-95"
+                        >
+                          Join Team
+                        </button>
+                      )}
+                    </div>
                   </div>
-                  <div className="bg-gray-100 px-4 py-3 text-right sm:px-6">
-                    {!loading && (
-                      <button
-                        type="submit"
-                        className="inline-flex justify-center rounded-md border border-transparent bg-yellow-500 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2"
-                      >
-                        Join Team
-                      </button>
-                    )}
-                  </div>
-                </div>
+                </form>
               </div>
             </div>
           </div>
@@ -186,7 +246,7 @@ function OperatorSignUp() {
                     New Operator Information
                   </h3>
                   <p className="mt-1 text-sm text-gray-600">
-                    Join our {hello.data ? hello.data : "5"} other operators
+                    Join our {opCount.data ? opCount.data : "5"} other operators
                     using this service, Enter your information to create a new
                     operator and get started today.
                   </p>

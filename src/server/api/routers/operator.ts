@@ -39,6 +39,19 @@ export const operatorRouter = createTRPCRouter({
     return ctx.prisma.operator.count();
   }),
   // Find Operator By ID
+  findByID: protectedProcedure
+    .input(
+      z.object({
+        operatorId: z.string(),
+      })
+    )
+    .query(({ input, ctx }) => {
+      return ctx.prisma.operator.findUnique({
+        where: {
+          id: input.operatorId,
+        },
+      });
+    }),
   // Find All Operators
   getAll: protectedProcedure.query(({ ctx }) => {
     return ctx.prisma.operator.findMany({
