@@ -40,13 +40,32 @@ function OperatorSignUp() {
   };
 
   const { mutateAsync: createOperator } = api.operator.create.useMutation();
-  const onNewOperatorSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const { mutateAsync: updateUser } = api.user.addOperator.useMutation();
+  const onNewOperatorSubmit = async (
+    e: React.FormEvent<HTMLFormElement>
+  ): Promise<void> => {
     e.preventDefault();
     setLoading(true);
     try {
-      const result = await createOperator(opData);
-      console.log("New Op ", result);
-      router.reload();
+      console.log("Trying......");
+      const { id: newOpId } = await createOperator(opData);
+      toast(`Operator Added: `, {
+        hideProgressBar: true,
+        autoClose: 2000,
+        type: "success",
+      });
+      const dataObject = {
+        operatorId: newOpId,
+      };
+      const updatedUser = await updateUser(dataObject);
+      toast(`User Updated `, {
+        hideProgressBar: true,
+        autoClose: 2000,
+        type: "success",
+      });
+      setTimeout(() => {
+        router.reload();
+      }, 5000);
     } catch (error) {
       console.log(error);
       setLoading(false);
@@ -141,12 +160,14 @@ function OperatorSignUp() {
                     </div>
                   </div>
                   <div className="bg-gray-100 px-4 py-3 text-right sm:px-6">
-                    <button
-                      type="submit"
-                      className="inline-flex justify-center rounded-md border border-transparent bg-yellow-500 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2"
-                    >
-                      Join Team
-                    </button>
+                    {!loading && (
+                      <button
+                        type="submit"
+                        className="inline-flex justify-center rounded-md border border-transparent bg-yellow-500 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2"
+                      >
+                        Join Team
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>

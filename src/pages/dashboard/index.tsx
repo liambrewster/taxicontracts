@@ -8,17 +8,24 @@ import CardProfile from "../../components/cardProfile";
 import DashboardSideBar from "../../components/dashboardSideBar";
 import Loading from "../../components/loading";
 import OperatorSignUp from "../../components/operatorSignUp";
+import { toast } from "react-toastify";
 
 const Dashboard: NextPage = () => {
   const router = useRouter();
   const { data: sessionData, status } = useSession({
     required: true,
     onUnauthenticated() {
-      router.push("/").catch((error) => console.error("Oh no!", error));
-
-      // TODO: add toast with meaningful error
+      router.push("/").catch((error) => {
+        console.error("Oh no!", error);
+        toast(`Error occured, Check console`, {
+          hideProgressBar: true,
+          autoClose: 2000,
+          type: "error",
+        });
+      });
     },
   });
+  console.log(sessionData);
 
   if (status === "loading") {
     return <Loading />;

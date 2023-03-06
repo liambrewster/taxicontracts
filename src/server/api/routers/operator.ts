@@ -1,4 +1,3 @@
-
 import { z } from "zod";
 
 import { createTRPCRouter, publicProcedure, protectedProcedure } from "../trpc";
@@ -12,35 +11,40 @@ export const operatorRouter = createTRPCRouter({
         greeting: `Is It me ${input.text}`,
       };
     }),
-    // Create An Operator
+  // Create An Operator
   create: protectedProcedure
-  .input(z.object({ name: z.string(),logo: z.string(),        
-    website: z.string(),     
-    public_email: z.string(),
-    public_phone: z.string() }))
-  .mutation(async ({ input,ctx }) => {
-    const operator = await ctx.prisma.operator.create({
-      data: {
-        name:input.name,       
-        logo:input.logo,        
-        website:input.website,     
-        public_email:input.public_email,
-        public_phone:input.public_phone,
-      },
-    })
-    console.log("TRPC Operator", operator)
-    return operator;
-  }),
+    .input(
+      z.object({
+        name: z.string(),
+        logo: z.string(),
+        website: z.string(),
+        public_email: z.string(),
+        public_phone: z.string(),
+      })
+    )
+    .mutation(async ({ input, ctx }) => {
+      const operator = await ctx.prisma.operator.create({
+        data: {
+          name: input.name,
+          logo: input.logo,
+          website: input.website,
+          public_email: input.public_email,
+          public_phone: input.public_phone,
+        },
+      });
+      return operator;
+    }),
   // Count All Operators
   count: protectedProcedure.query(({ ctx }) => {
     return ctx.prisma.operator.count();
   }),
+  // Find Operator By ID
   // Find All Operators
   getAll: protectedProcedure.query(({ ctx }) => {
     return ctx.prisma.operator.findMany({
       orderBy: [
         {
-          name: 'asc',
+          name: "asc",
         },
       ],
       // select: {
@@ -49,8 +53,6 @@ export const operatorRouter = createTRPCRouter({
       // },
     });
   }),
-  // Find the Operator
   // Update the Operator
-
-  
+  // Delete The Operator
 });
