@@ -69,7 +69,7 @@ function Hero() {
               >
                 <Link href="/contracts" legacyBehavior>
                   <div>
-                    <a className="btn mb-4 block w-full rounded bg-yellow-500 p-3 text-white hover:bg-yellow-700 sm:mb-0 sm:inline sm:w-auto md:mb-8">
+                    <a className="btn  mb-4 block w-full rounded bg-yellow-500 p-3 text-white hover:bg-yellow-700 active:scale-95 sm:mb-0 sm:inline sm:w-auto md:mb-8">
                       View Available Contracts
                     </a>
                   </div>
@@ -77,7 +77,7 @@ function Hero() {
                 <Link href="/how" legacyBehavior>
                   <div>
                     <a
-                      className="btn block w-full rounded bg-gray-900 p-3 text-white hover:bg-gray-800 sm:ml-4 sm:inline sm:w-auto"
+                      className="btn block w-full rounded bg-gray-900 p-3 text-white hover:bg-gray-800 active:scale-95 sm:ml-4 sm:inline sm:w-auto"
                       href="/how"
                     >
                       Learn more
