@@ -279,7 +279,10 @@ function OperatorSignUp() {
                             htmlFor="operatorEmail"
                             className="block text-sm font-medium text-gray-700"
                           >
-                            Public Facing Email Address
+                            Driver Facing Email Address{" "}
+                            <span className="text-sm text-gray-300">
+                              (optional)
+                            </span>
                           </label>
                           <input
                             type="text"
@@ -296,7 +299,10 @@ function OperatorSignUp() {
                             htmlFor="operatorPhone"
                             className="block text-sm font-medium text-gray-700"
                           >
-                            Public Facing Phone Number
+                            Driver Facing Phone Number{" "}
+                            <span className="text-sm text-gray-300">
+                              (optional)
+                            </span>
                           </label>
                           <input
                             type="text"
