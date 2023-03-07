@@ -1,95 +1,47 @@
 import React, { FunctionComponent } from "react";
 import Link from "next/link";
 import { RiAuctionLine } from "react-icons/ri";
+import { api } from "../utils/api";
+
+interface contractItem {
+  id: string;
+  internalId: string;
+  operatorId: string;
+  status: string;
+  pickup: string;
+  destination: string;
+  collections: number;
+  distance: number;
+  vehicleSize: number;
+  timings: string;
+  days: string;
+  type: string;
+}
+
+interface contractItems extends Array<contractItem> {}
 
 function BidTable() {
+  const data = "";
+
   const backUpArray = {
-    operator: "No Current Contracts",
-    ref: "",
-    stage: "nodata",
+    id: "1",
+    internalId: "",
+    operatorId: "No Current Contracts",
+    status: "nodata",
     pickup: "😢",
-    dropoff: "😭",
-    pickups: 0,
-    mileage: 0,
-    vehicle: 0,
-    timing: "😐",
-    days: "🙁",
+    destination: "😭",
+    collections: 0,
+    distance: 0,
+    vehicleSize: 0,
+    timings: "😐",
+    days: "😐",
+    type: "Regular",
   };
-  const contracts = [
-    // {
-    //   operator: "City Taxis",
-    //   ref: "ABC1235",
-    //   stage: "ending",
-    //   pickup: "S12",
-    //   dropoff: "S5",
-    //   pickups: 2,
-    //   mileage: 9.2,
-    //   vehicle: 4,
-    //   timing: "AM & PM",
-    //   days: "Mon, Wed, Fri",
-    // },
-    // {
-    //   operator: "DG Taxis",
-    //   ref: "ABC234252",
-    //   stage: "active",
-    //   pickup: "S4",
-    //   dropoff: "S5",
-    //   pickups: 1,
-    //   mileage: 3.2,
-    //   vehicle: 4,
-    //   timing: "AM",
-    //   days: "Mon, Wed, Fri",
-    // },
-    // {
-    //   operator: "AAA Taxis",
-    //   ref: "AQW234252",
-    //   stage: "review",
-    //   pickup: "S5",
-    //   dropoff: "S5",
-    //   pickups: 2,
-    //   mileage: 2.2,
-    //   vehicle: 4,
-    //   timing: "AM & PM",
-    //   days: "Mon, Tue, Wed, Thur, Fri",
-    // },
-    // {
-    //   operator: "City Taxis",
-    //   ref: "AEEW23452",
-    //   stage: "active",
-    //   pickup: "S10",
-    //   dropoff: "S6",
-    //   pickups: 1,
-    //   mileage: 4.2,
-    //   vehicle: 4,
-    //   timing: "PM",
-    //   days: "Mon, Tue, Wed, Thur, Fri",
-    // },
-    // {
-    //   operator: "City Taxis",
-    //   ref: "AEKK232132",
-    //   stage: "ending",
-    //   pickup: "S10",
-    //   dropoff: "S4",
-    //   pickups: 2,
-    //   mileage: 7.2,
-    //   vehicle: 4,
-    //   timing: "AM",
-    //   days: "Mon, Tue",
-    // },
-    // {
-    //   operator: "City Taxis",
-    //   ref: "AASDK277732",
-    //   stage: "review",
-    //   pickup: "S7",
-    //   dropoff: "S4",
-    //   pickups: 4,
-    //   mileage: 9.2,
-    //   vehicle: 7,
-    //   timing: "AM & PM",
-    //   days: "Mon, Tue, Thu",
-    // },
-  ];
-  if (!contracts.length) {
+  const contracts: contractItems = [];
+  if (data.length) {
+    contracts.push();
+  }
+  if (!data.length) {
     contracts.push(backUpArray);
   }
   return (
@@ -102,6 +54,9 @@ function BidTable() {
             </th>
             <th scope="col" className="px-6 py-4 font-medium text-gray-900">
               Status
+            </th>
+            <th scope="col" className="px-6 py-4 font-medium text-gray-900">
+              Type
             </th>
             <th scope="col" className="px-6 py-4 font-medium text-gray-900">
               Pickup
@@ -138,27 +93,30 @@ function BidTable() {
                 <div className="relative h-10 w-10">
                   <img
                     className="h-full w-full rounded-full object-cover object-center"
-                    src={`https://eu.ui-avatars.com/api/?name=${contract.operator}&size=250`}
+                    src={`https://eu.ui-avatars.com/api/?name=${contract.operatorId}&size=250`}
                     alt=""
                   />
                   <span className="absolute right-0 bottom-0 h-2 w-2 rounded-full bg-green-400 ring ring-white"></span>
                 </div>
                 <div className="text-sm">
                   <div className="font-medium text-gray-700">
-                    {contract.operator}
+                    {contract.operatorId}
                   </div>
-                  <div className="text-gray-400">Ref: {contract.ref}</div>
+                  <div className="text-gray-400">
+                    Ref: {contract.internalId}
+                  </div>
                 </div>
               </th>
               <td className="px-6 py-4">
-                <Stage label={contract.stage} />
+                <Stage label={contract.status} />
               </td>
+              <td className="px-6 py-4">{contract.type}</td>
               <td className="px-6 py-4">{contract.pickup}</td>
-              <td className="px-6 py-4">{contract.dropoff}</td>
-              <td className="px-6 py-4">{contract.pickups}</td>
-              <td className="px-6 py-4">{contract.mileage}</td>
-              <td className="px-6 py-4">{contract.vehicle}</td>
-              <td className="px-6 py-4">{contract.timing}</td>
+              <td className="px-6 py-4">{contract.destination}</td>
+              <td className="px-6 py-4">{contract.collections}</td>
+              <td className="px-6 py-4">{contract.distance}</td>
+              <td className="px-6 py-4">{contract.vehicleSize}</td>
+              <td className="px-6 py-4">{contract.timings}</td>
               <td className="px-6 py-4">{contract.days}</td>
               <td className="px-6 py-4">
                 <div className="flex justify-end gap-4">
