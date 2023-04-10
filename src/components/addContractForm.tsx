@@ -67,6 +67,7 @@ const AddContractForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className="mx-auto mt-20 max-w-xl">
+      <h1 className="text-bold text-xl underline">Add a Contract Posting</h1>
       <div className="mb-4">
         <label
           htmlFor="internalId"
@@ -216,7 +217,7 @@ const AddContractForm = () => {
             id="timings"
             name="timings"
             className="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 focus:outline-none"
-            placeholder="AM or PM or oneoff>"
+            placeholder="AM or PM or oneoff?"
             value={formState.timings}
             onChange={handleInputChange}
           />
