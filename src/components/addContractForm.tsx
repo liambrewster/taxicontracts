@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { format } from "date-fns";
+import { api } from "../utils/api";
+import { toast } from "react-toastify";
+import Router, { useRouter } from "next/router";
 
 type FormState = {
   internalId: string;
-  status: string;
+  status: "ACTIVE" | "DRAFT" | "PENDING";
   pickup: string;
   destination: string;
   collections: number;
@@ -11,7 +14,7 @@ type FormState = {
   vehicleSize: number;
   timings: string;
   days: string;
-  journeytype: string;
+  journeytype: "REGULAR" | "SINGLE" | "RETURN";
   expiry: Date;
 };
 
@@ -21,7 +24,7 @@ tenDaysFromNow.setHours(12, 0, 0, 0);
 
 const initialFormState: FormState = {
   internalId: "",
-  status: "",
+  status: "ACTIVE",
   pickup: "",
   destination: "",
   collections: 1,
@@ -29,15 +32,17 @@ const initialFormState: FormState = {
   vehicleSize: 4,
   timings: "",
   days: "",
-  journeytype: "ACTIVE",
+  journeytype: "REGULAR",
   expiry: tenDaysFromNow,
 };
 
 const AddContractForm = () => {
+  const router = useRouter();
   const [formState, setFormState] = useState<FormState>(initialFormState);
 
   function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
     const target = event.target;
+    enableSubmit();
     const name = target.name;
     let value: string | number | Date = target.value;
 
@@ -54,15 +59,61 @@ const AddContractForm = () => {
   }
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = event.target;
+    enableSubmit();
     setFormState((prevState) => ({
       ...prevState,
       [name]: value,
     }));
   };
+  //button cant be pressed until all data
+  const [button, setButton] = useState(false);
+  function enableSubmit() {
+    if (
+      formState.internalId ||
+      formState.pickup ||
+      formState.destination ||
+      formState.timings ||
+      formState.days ||
+      formState.journeytype
+    ) {
+      setButton(true);
+    }
+  }
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    console.log(formState);
+  //handle the submission of the contract
+  const { mutateAsync: createContract } = api.contract.create.useMutation();
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (
+    e: React.FormEvent<HTMLFormElement>
+  ): Promise<void> => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      console.log("Trying......");
+      const { id: newContractId } = await createContract(formState);
+      toast(`Contract Added: ${newContractId}`, {
+        hideProgressBar: true,
+        autoClose: 2000,
+        type: "success",
+      });
+      console.log("contract", newContractId);
+
+      setTimeout(() => {
+        router.replace("/dashboard");
+      }, 5000);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+      toast(
+        `oopppsss Try again!!! Check all data present and the distance is set to a whole number`,
+        {
+          hideProgressBar: true,
+          autoClose: 2000,
+          type: "error",
+        }
+      );
+    }
   };
 
   return (
@@ -104,9 +155,7 @@ const AddContractForm = () => {
           <option value="">Select A Starting Status</option>
           <option value="DRAFT">Draft</option>
           <option value="PENDING">Pending</option>
-          <option selected value="ACTIVE">
-            Active
-          </option>
+          <option value="ACTIVE">Active</option>
         </select>
       </div>
 
@@ -180,6 +229,7 @@ const AddContractForm = () => {
             id="distance"
             name="distance"
             className="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 focus:outline-none"
+            step="1"
             value={formState.distance}
             onChange={handleInputChange}
           />
@@ -282,12 +332,16 @@ const AddContractForm = () => {
       </div>
 
       <div className="flex items-center justify-between">
-        <button
-          className="focus:shadow-outline rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700 focus:outline-none"
-          type="submit"
-        >
-          Submit
-        </button>
+        {loading && <p>Loading.....</p>}
+        {!loading && (
+          <button
+            className="focus:shadow-outline rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700 focus:outline-none"
+            type="submit"
+            disabled={!button}
+          >
+            Submit
+          </button>
+        )}
       </div>
     </form>
   );
