@@ -38,4 +38,48 @@ export const contractRouter = createTRPCRouter({
       },
     });
   }),
+
+  // Create A Contract
+  create: protectedProcedure
+    .input(
+      z.object({
+        internalId: z.string(),
+        status: z
+          .literal("DRAFT")
+          .or(z.literal("PENDING"))
+          .or(z.literal("ACTIVE")),
+        pickup: z.string(),
+        destination: z.string(),
+        collections: z.number(),
+        distance: z.number(),
+        vehicleSize: z.number(),
+        timings: z.string(),
+        days: z.string(),
+        journeytype: z
+          .literal("REGULAR")
+          .or(z.literal("SINGLE"))
+          .or(z.literal("RETURN")),
+        expiry: z.date(),
+      })
+    )
+    .mutation(async ({ input, ctx }) => {
+      const operator = await ctx.prisma.contract.create({
+        data: {
+          internalId: input.internalId,
+          operatorId: ctx.session.user.operatorId,
+          userId: ctx.session.user.id,
+          status: input.status,
+          pickup: input.pickup,
+          destination: input.destination,
+          collections: input.collections,
+          distance: input.distance,
+          vehicleSize: input.vehicleSize,
+          timings: input.timings,
+          days: input.days,
+          journeytype: input.journeytype,
+          expiry: input.expiry,
+        },
+      });
+      return operator;
+    }),
 });
